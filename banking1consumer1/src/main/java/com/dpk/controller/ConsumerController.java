@@ -30,7 +30,7 @@ public class ConsumerController {
 
 	@GetMapping
 	public List<Employee> consumeAllEmployee() {
-		List<ServiceInstance> si = discoveryClient.getInstances("BANKING1");
+		List<ServiceInstance> si = discoveryClient.getInstances("GATEWAY");
 
 		ServiceInstance instance = si.get(0);
 
@@ -44,7 +44,7 @@ public class ConsumerController {
 	@PostMapping
 	public String createEmployee(@RequestBody Employee emp) {
 
-		List<ServiceInstance> si = discoveryClient.getInstances("BANKING1");
+		List<ServiceInstance> si = discoveryClient.getInstances("GATEWAY");
 
 		ServiceInstance instance = si.get(0);
 
@@ -55,9 +55,9 @@ public class ConsumerController {
 
 	}
 
-	@PutMapping("/{uid}")
+	@PutMapping("{uid}")
 	public String edit(@PathVariable("uid") String email, @RequestBody Employee emp) {
-		List<ServiceInstance> si = discoveryClient.getInstances("BANKING1");
+		List<ServiceInstance> si = discoveryClient.getInstances("GATEWAY");
 
 		ServiceInstance instance = si.get(0);
 
@@ -68,9 +68,9 @@ public class ConsumerController {
 
 	}
 
-	@DeleteMapping("/{uid}")
+	@DeleteMapping("{uid}")
 	public String remove(@PathVariable("uid") String email) {
-		List<ServiceInstance> si = discoveryClient.getInstances("BANKING1");
+		List<ServiceInstance> si = discoveryClient.getInstances("GATEWAY");
 
 		ServiceInstance instance = si.get(0);
 
