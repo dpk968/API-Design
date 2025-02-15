@@ -26,7 +26,6 @@ public class BankingService implements BankingServiceInterface{
 
 	@Override
 	public List<Employee> getAllRecordService() {
-		// TODO Auto-generated method stub
 		return bDao.findAll();
 	}
 
