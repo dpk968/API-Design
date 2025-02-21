@@ -80,7 +80,7 @@ public class ConsumerController {
 	}
 
 	@DeleteMapping("{uid}")
-	@Bulkhead(name = "myBulkhead", fallbackMethod = "bulkheadFallback")
+//	@Bulkhead(name = "myBulkhead", fallbackMethod = "bulkheadFallback")
 	@TimeLimiter(name = "myTimeLimiter", fallbackMethod = "timeLimitFallback")
 	public String remove(@PathVariable("uid") String email) throws InterruptedException {
 		List<ServiceInstance> si = discoveryClient.getInstances("GATEWAY");
@@ -97,8 +97,9 @@ public class ConsumerController {
 		return "Too many requests! Please try again later.";
 	}
 
-	public CompletableFuture<String> timeLimitFallback(Exception e) {
-		return CompletableFuture.supplyAsync(() -> "Request timed out! Try again later.");
+	public String timeLimitFallback(Throwable throwable) {
+	    // Handle the fallback logic
+	    return "Fallback method executed due to timeout";
 	}
 
 	public String bulkheadFallback(Exception e) {

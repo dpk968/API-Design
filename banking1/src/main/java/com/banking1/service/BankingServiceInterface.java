@@ -8,7 +8,7 @@ public interface BankingServiceInterface {
 
 	String createProfileService(Employee emp);
 
-	List<Employee> getAllRecordService();
+	List<Employee> getAllRecordService() throws InterruptedException;
 
 	String editRecordService(Employee emp);
 

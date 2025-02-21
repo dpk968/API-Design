@@ -1,5 +1,6 @@
 package com.banking1.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.banking1.entity.Employee;
 import com.banking1.service.BankingServiceInterface;
+import com.netflix.spectator.api.Utils;
 
 @RestController
 @RequestMapping("api/v1/emp")
@@ -26,7 +28,13 @@ public class BankingController {
 	
 	@GetMapping
 	public List<Employee> displayAll() {
-		return bService.getAllRecordService(); 
+		try {
+			return  bService.getAllRecordService();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ArrayList<>();
+		} 
 	}
 	
 	
